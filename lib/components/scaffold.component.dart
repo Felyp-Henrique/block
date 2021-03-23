@@ -6,19 +6,25 @@ class BlockScaffold extends StatelessWidget {
 
   Widget? body;
   PreferredSizeWidget? appBar;
+  FloatingActionButton? floatingActionButton;
+  FloatingActionButtonLocation? floatingActionButtonLocation;
 
   BlockScaffold({
     Key? key,
     this.appBar,
-    @required this.body
+    required this.body,
+    this.floatingActionButton,
+    this.floatingActionButtonLocation,
   }): super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar,
-      backgroundColor: Colors.purpleAccent,
+      backgroundColor: Theme.of(context).primaryColor,
       body: _body(),
+      floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
     );
   }
 

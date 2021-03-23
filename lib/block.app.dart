@@ -12,6 +12,12 @@ class BlockApp extends StatelessWidget {
       routes: {
         HomeView.ROUTE_PATH: (context) => HomeView(),
       },
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.blue[900],
+        accentColor: Colors.pink[600],
+        errorColor: Colors.red[900],
+      ),
     );
   }
 }

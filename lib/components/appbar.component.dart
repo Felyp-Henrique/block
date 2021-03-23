@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // ignore: non_constant_identifier_names
 PreferredSizeWidget BlockAppBar({
       Key? key,
-      @required Widget? title,
+      required Widget? title,
       Widget? leading,
       List<Widget>? actions,
       Brightness? brightness: Brightness.light,
