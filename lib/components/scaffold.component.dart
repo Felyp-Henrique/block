@@ -4,22 +4,24 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class BlockScaffold extends StatelessWidget {
 
+  Key? key;
   Widget? body;
   PreferredSizeWidget? appBar;
   FloatingActionButton? floatingActionButton;
   FloatingActionButtonLocation? floatingActionButtonLocation;
 
   BlockScaffold({
-    Key? key,
+    this.key,
     this.appBar,
     required this.body,
     this.floatingActionButton,
     this.floatingActionButtonLocation,
-  }): super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: key,
       appBar: appBar,
       backgroundColor: Theme.of(context).primaryColor,
       body: _body(),

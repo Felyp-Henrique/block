@@ -6,7 +6,7 @@ class BlockApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Block",
+      title: "block",
       debugShowCheckedModeBanner: false,
       initialRoute: HomeView.ROUTE_PATH,
       routes: {
