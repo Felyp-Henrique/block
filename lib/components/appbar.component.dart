@@ -9,6 +9,7 @@ PreferredSizeWidget BlockAppBar({
       Brightness? brightness: Brightness.light,
     }) {
   return AppBar(
+    key: key,
     title: title,
     centerTitle: true,
     actions: actions,
