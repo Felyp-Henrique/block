@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
 
 class BlockDimensions {
-  static const Radius borderCircular = Radius.circular(20);
+
+  // Borders
+  static const double borderGeneral = 20;
+
+  // Paddings
+  static const double paddingContents = 18;
 }

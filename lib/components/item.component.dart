@@ -62,7 +62,7 @@ class BlockItem extends StatelessWidget {
       leading: leading,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
-          BlockDimensions.borderCircular
+          Radius.circular(BlockDimensions.borderGeneral),
         ),
       ),
     );
@@ -80,7 +80,7 @@ class BlockItem extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: Theme.of(context).errorColor,
-        borderRadius: BorderRadius.all(BlockDimensions.borderCircular),
+        borderRadius: BorderRadius.all(Radius.circular(BlockDimensions.borderGeneral)),
       ),
     ));
   }

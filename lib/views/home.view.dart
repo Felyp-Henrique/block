@@ -2,6 +2,7 @@ import 'package:block/components/appbar.component.dart';
 import 'package:block/components/bottomsheet.component.dart';
 import 'package:block/components/item.component.dart';
 import 'package:block/components/scaffold.component.dart';
+import 'package:block/forms/register.home.form.dart';
 import 'package:flutter/material.dart';
 
 
@@ -11,12 +12,12 @@ class HomeView extends StatelessWidget {
   static const String ROUTE_PATH = "/";
 
   List<dynamic> _itens = List.empty();
-  final GlobalKey<ScaffoldState> _scaffold = GlobalKey<ScaffoldState>();
+  final GlobalKey<BlockScaffoldState> _blockScaffold = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return BlockScaffold(
-      key: _scaffold,
+      key: _blockScaffold,
       appBar: _appbar(),
       body: SafeArea(
         child: _itens.isEmpty
@@ -60,13 +61,13 @@ class HomeView extends StatelessWidget {
     ]);
   }
 
-  FloatingActionButton _adicionarItem() {
+  Widget _adicionarItem() {
     return FloatingActionButton.extended(
         icon: Icon(Icons.add), label: Text("Adicionar"), onPressed: () {
-      _scaffold.currentState?.showBottomSheet((context) {
-        return BlockBottomSheet(child: Text("Hello"), onClosing: () {
-          print("Exit!");
-        });
+      _blockScaffold.currentState?.showBottomSheet((context) {
+        return BlockBottomSheet(
+          child: RegisterHomeForm(),
+        );
       });
     });
   }

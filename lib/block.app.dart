@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:block/views/home.view.dart';
 
-class BlockApp extends StatelessWidget {
+class BlockApp extends StatefulWidget {
+  
+  @override
+  BlockAppState createState() {
+    return BlockAppState();
+  }
+}
+
+class BlockAppState extends State<BlockApp> {
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +22,10 @@ class BlockApp extends StatelessWidget {
       },
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Colors.blue[900],
+        primaryColor: Colors.blueGrey[800],
         accentColor: Colors.pink[600],
         errorColor: Colors.red[900],
+        cardColor: Colors.white,
       ),
     );
   }
