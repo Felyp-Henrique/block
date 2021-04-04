@@ -31,7 +31,7 @@ class HomeView extends StatelessWidget {
 
   PreferredSizeWidget _appbar() {
     return BlockAppBar(
-      title: Text("block"),
+      title: Text("Block"),
       actions: [
         IconButton(icon: Icon(Icons.settings), onPressed: () {
           print("Heee");
