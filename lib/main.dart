@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:block/block.app.dart';
+import 'package:block/features/block.dart';
 
 void main() {
   runApp(BlockApp());
