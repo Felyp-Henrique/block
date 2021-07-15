@@ -1,0 +1,2 @@
+
+class SQLException implements Exception {}

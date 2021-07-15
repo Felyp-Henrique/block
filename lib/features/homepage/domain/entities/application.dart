@@ -1,22 +1,22 @@
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
-class Application extends Equatable {
+class ApplicationEntity extends Equatable {
 
   String name;
   String package;
-  bool isBlocked;
+  bool is_blocked;
 
   @override
   List<Object?> get props => [
     name,
     package,
-    isBlocked,
+    is_blocked,
   ];
 
-  Application({
-    this.name: "",
-    this.package: "",
-    this.isBlocked: false,
+  ApplicationEntity({
+    required this.name,
+    required this.package,
+    required this.is_blocked,
   }) : super();
 }

@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-abstract class UseCaseBase extends Equatable {
+abstract class UseCaseBase {
 
   void execute([List<dynamic> args = const []]);
 }

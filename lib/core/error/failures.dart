@@ -10,3 +10,9 @@ abstract class FailureBase extends Equatable {
     this.props = properties;
   }
 }
+
+/*
+ * General failures
+ */
+
+class SQLFailure extends FailureBase {}
