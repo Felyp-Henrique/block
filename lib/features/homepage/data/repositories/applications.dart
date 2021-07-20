@@ -1,9 +1,14 @@
+import 'package:block/features/homepage/data/datasources/applications.dart';
 import 'package:block/features/homepage/domain/entities/application.dart';
 import 'package:block/core/error/failures.dart';
 import 'package:block/features/homepage/domain/repositories/applications.dart';
 import 'package:dartz/dartz.dart';
 
 class ApplicationRepository extends ApplicationRespositoryBase {
+
+  ApplicationDataSourceBase dataSource;
+
+  ApplicationRepository(this.dataSource) : super();
 
   @override
   Future<Either<FailureBase, List<ApplicationEntity>>> all() async {

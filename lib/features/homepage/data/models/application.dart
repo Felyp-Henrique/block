@@ -16,13 +16,18 @@ class ApplicationModel extends ApplicationEntity {
       is_blocked: is_blocked,
     );
 
-  Map<String, dynamic> toMap() {
-    return {
-      "id": this.id,
-      "name": this.name,
-      "package": this.package,
-      "is_blocked": this.is_blocked,
-    };
+  Map<String, dynamic> toMap([ bool withId = true ]) {
+    Map<String, Object> data = {};
+
+    if (withId) {
+      data["id"] = this.id;
+    }
+
+    data["name"] = this.name;
+    data["package"] = this.package;
+    data["is_blocked"] = this.is_blocked;
+    
+    return data;
   }
 
   factory ApplicationModel.fromMap(Map<String, dynamic> map) {
