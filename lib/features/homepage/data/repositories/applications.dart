@@ -1,8 +1,7 @@
 import 'package:block/features/homepage/data/datasources/applications.dart';
+import 'package:block/features/homepage/data/models/application.dart';
 import 'package:block/features/homepage/domain/entities/application.dart';
-import 'package:block/core/error/failures.dart';
 import 'package:block/features/homepage/domain/repositories/applications.dart';
-import 'package:dartz/dartz.dart';
 
 class ApplicationRepository extends ApplicationRespositoryBase {
 
@@ -11,32 +10,27 @@ class ApplicationRepository extends ApplicationRespositoryBase {
   ApplicationRepository(this.dataSource) : super();
 
   @override
-  Future<Either<FailureBase, List<ApplicationEntity>>> all() async {
-    var result = null;
-    return Future.value(result);
+  Future<List<ApplicationEntity>> all() async {
+    return await dataSource.all() as List<ApplicationEntity>;
   }
 
   @override
-  Future<FailureBase> create(ApplicationEntity application) async {
-    var result = null;
-    return Future.value(result);
+  Future<void> create(ApplicationEntity application) async {
+    await dataSource.create(application as ApplicationModel);
   }
 
   @override
-  Future<FailureBase> delete(int id) async {
-    var result = null;
-    return Future.value(result);
+  Future<void> delete(int id) async {
+    await dataSource.delete(id);
   }
 
   @override
-  Future<Either<FailureBase, ApplicationEntity>> find(int id) async {
-    var result = null;
-    return Future.value(result);
+  Future<ApplicationEntity> find(int id) async {
+    return await dataSource.find(id) as ApplicationEntity;
   }
 
   @override
-  Future<FailureBase> update(ApplicationEntity application) async {
-    var result = null;
-    return Future.value(result);
+  Future<void> update(int id, ApplicationEntity application) async {
+    await dataSource.update(id, application as ApplicationModel);
   }
 }

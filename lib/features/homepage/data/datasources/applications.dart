@@ -1,62 +1,48 @@
+import 'package:block/core/utils/datasource.dart';
 import 'package:block/features/homepage/data/models/application.dart';
-import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 
-abstract class ApplicationDataSourceBase {
+abstract class ApplicationDataSourceBase <Connection, ResultModel extends IModel> {
 
-  Future<List<ApplicationModel>> all();
+  Future<List<ResultModel>> all();
 
-  Future<ApplicationModel> find(int id);
+  Future<ResultModel> find(int id);
 
-  Future<void> create(ApplicationModel application);
+  Future<int> create(ResultModel application);
 
-  Future<void> update(ApplicationModel application);
+  Future<void> update(int id, ResultModel application);
 
   Future<void> delete(int id);
 }
 
-class ApplicationDataBaseSource extends ApplicationDataSourceBase {
-
-  Database? _db;
-
-  String table;
-  String dbname;
-
-  ApplicationDataBaseSource(this.dbname, [this.table = "applications"]) : super();
+class ApplicationDB extends ApplicationDataSourceBase<Database, ApplicationModel>
+    with SQFLiteQueryMixin {
+  
+  static final String table = "applications";
 
   @override
   Future<List<ApplicationModel>> all() async {
-    return await _execute(() async {
-      List<ApplicationModel> result = [];
-
-      (await _db?.query(table))?.forEach((Map<String, Object?> row) {
-        result.add(ApplicationModel(
-          id: (row["id"] as int?) ?? 0,
-          name: (row["name"] as String?) ?? "",
-          package: (row["package"] as String?) ?? "",
-          is_blocked: (row["is_blocked"] as bool?) ?? false,
-        ));
+    return await execute((db) async {
+      return (await db.query(table)).map((e) {
+        return ApplicationModel()
+          ..fromMap(e);
       });
-      
-      return result;
     });
   }
 
   @override
-  Future<void> create(ApplicationModel application) async {
-    await _execute(() async {
-      await _db?.transaction((txn) async {
-        await txn.insert(table, application.toMap(false));
-      });
+  Future<int> create(ApplicationModel application) async {
+    return await execute((db) async {
+      return await db.insert(table, application.toMap());
     });
   }
 
   @override
   Future<void> delete(int id) async {
-    await _execute(() async {
-      await _db?.delete(
-        table, 
-        where: "id = ?",
+    await voidExecute((db) async {
+      await db.delete(
+        table,
+        where: 'id = ?',
         whereArgs: [id],
       );
     });
@@ -64,27 +50,24 @@ class ApplicationDataBaseSource extends ApplicationDataSourceBase {
 
   @override
   Future<ApplicationModel> find(int id) async {
-    return Future.value(null);
-  }
-
-  @override
-  Future<void> update(ApplicationModel application) async {
-    await _execute(() async {
-      await _db?.update(
+    return await execute((db) async {
+      return await db.query(
         table,
-        application.toMap(false),
-        where: "id = ?",
-        whereArgs: [application.id],
+        where: 'id = ?',
+        whereArgs: [id],
       );
     });
   }
 
-  Future<T> _execute<T>(AsyncValueGetter<T> callback) async {
-    try {
-      _db = await openDatabase(dbname);
-      return await callback();
-    } finally {
-      await _db?.close();
-    }
+  @override
+  Future<void> update(int id, ApplicationModel application) async {
+    await voidExecute((db) async {
+      await db.update(
+        table,
+        application.toMap(false),
+        where: 'id = ?',
+        whereArgs: [id]
+      );
+    });
   }
 }

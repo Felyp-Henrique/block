@@ -4,13 +4,13 @@ import 'package:block/core/error/failures.dart';
 
 abstract class ApplicationRespositoryBase {
   
-  Future<Either<FailureBase, List<ApplicationEntity>>> all();
+  Future<List<ApplicationEntity>> all();
 
-  Future<Either<FailureBase, ApplicationEntity>> find(int id);
+  Future<ApplicationEntity> find(int id);
 
-  Future<FailureBase> create(ApplicationEntity application);
+  Future<void> create(ApplicationEntity application);
 
-  Future<FailureBase> update(ApplicationEntity application);
+  Future<void> update(int id, ApplicationEntity application);
 
-  Future<FailureBase> delete(int id);
+  Future<void> delete(int id);
 }

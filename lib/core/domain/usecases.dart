@@ -1,10 +1,9 @@
 
-abstract class UseCaseBase {
-
-  void execute([List<dynamic> args = const []]);
+abstract class ParamBase <T> {
+  late final T value;
 }
 
-abstract class UseCaseResultBase <T> {
+abstract class UseCaseBase<T, P extends ParamBase> {
 
-  T execute([List<dynamic> args = const []]);
+  T execute([ParamBase<P>? parans = null]);
 }

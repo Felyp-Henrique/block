@@ -1,15 +1,23 @@
 import 'package:block/features/homepage/domain/entities/application.dart';
 
-// ignore: must_be_immutable
-class ApplicationModel extends ApplicationEntity {
 
-  int id;
+abstract class IModel {
+
+  Map<String, dynamic> toMap([ bool withId = true ]);
+  void fromMap(Map<String, dynamic> map);
+}
+
+
+// ignore: must_be_immutable
+class ApplicationModel extends ApplicationEntity implements IModel {
+
+  late int id;
 
   ApplicationModel({
-    required this.id,
-    required String name,
-    required String package,
-    required bool is_blocked,
+    this.id: 0,
+    String name: '',
+    String package: '',
+    bool is_blocked: false,
   }) : super(
       name: name,
       package: package,
@@ -30,12 +38,10 @@ class ApplicationModel extends ApplicationEntity {
     return data;
   }
 
-  factory ApplicationModel.fromMap(Map<String, dynamic> map) {
-    return ApplicationModel(
-      id: map['id'],
-      name: map['name'],
-      package: map['package'],
-      is_blocked: map['is_blocked'],
-    );
+  void fromMap(Map<String, dynamic> map) {
+    this.id = map['id'] ?? 0;
+    this.name = map['name'] ?? '';
+    this.package = map['package'] ?? '';
+    this.is_blocked = map['is_blocked'] ?? false;
   }
 }
