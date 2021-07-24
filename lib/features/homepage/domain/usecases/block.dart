@@ -16,15 +16,14 @@ class BlockUseCase extends UseCaseBase<void, BlockParam> {
   BlockUseCase(this.respository) : super();
 
   @override
-  Future<void> execute([ParamBase<BlockParam>? parans = null]) async {
+  Future<void> execute([ParamBase<BlockParam>? parans]) async {
     if (parans == null) {
       return;
     }
 
-    int id = parans!.value as int;
+    int id = parans.value as int;
 
-    ApplicationEntity? app =
-      await respository.find(id) as ApplicationEntity;
+    ApplicationEntity? app = await respository.find(id);
     
     await respository.update(id, app);
   }
