@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 
-mixin SQFLiteQueryMixin {
+mixin SQLQueryMixin {
 
   late String path;
   late Database db;

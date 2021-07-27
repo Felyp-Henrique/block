@@ -1,22 +1,20 @@
 import 'package:block/core/utils/datasource.dart';
 import 'package:block/features/homepage/data/models/application.dart';
-import 'package:sqflite/sqflite.dart';
 
-abstract class ApplicationDataSourceBase <Connection, ResultModel extends IModel> {
+abstract class ApplicationDataSourceBase {
 
-  Future<List<ResultModel>> all();
+  Future<List<ApplicationModel>> all();
 
-  Future<ResultModel> find(int id);
+  Future<ApplicationModel> find(int id);
 
-  Future<int> create(ResultModel application);
+  Future<int> create(ApplicationModel application);
 
-  Future<void> update(int id, ResultModel application);
+  Future<void> update(int id, ApplicationModel application);
 
   Future<void> delete(int id);
 }
 
-class ApplicationDB extends ApplicationDataSourceBase<Database, ApplicationModel>
-    with SQFLiteQueryMixin {
+class ApplicationDB extends ApplicationDataSourceBase with SQLQueryMixin {
   
   static final String table = "applications";
 
@@ -66,7 +64,7 @@ class ApplicationDB extends ApplicationDataSourceBase<Database, ApplicationModel
         table,
         application.toMap(false),
         where: 'id = ?',
-        whereArgs: [id]
+        whereArgs: [id],
       );
     });
   }
